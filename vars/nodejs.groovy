@@ -5,7 +5,7 @@
             sh "echo ***** Completed Style Checks *****"
       }     
 
-      def call()  { //when u call file nodejs, this function will be called by default
+      def call('component')  { //when u call file nodejs, this function will be called by default
             pipeline {
             agent any     
             stages{
