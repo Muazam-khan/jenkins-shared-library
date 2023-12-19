@@ -42,7 +42,7 @@ The directory structure of a Shared Library repository is as follows:
 
      Scans are of 2 types :
         1) SAST   ( Analysing the code )
-        2) DAST   ( Analysing the application through the endPoint / pen testing )
+        2) DAST   ( Analysing the application through the endPoint / pen testing ) // pen testing means penetration testing
 
 #### Why do i need Static Code Analysis (SAST : SonarQube )
 ....
@@ -58,5 +58,10 @@ The directory structure of a Shared Library repository is as follows:
     1) Create your own server and set-up sonarQube on the top of that server ( Paid tool : 1 month : In free version, you'd get embedded Portgress DB ) 
 
     2) You can use SAS offering ( You don't have to host anything locally )
+....  // u get offering from a provider, u get a username and password
+
+#### Maven Goals
+....
+     
 ....
     
