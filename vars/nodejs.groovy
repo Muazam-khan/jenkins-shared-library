@@ -7,20 +7,20 @@
 
       def call()  { //when u call file nodejs, this function will be called by default, call is default func
             pipeline {
-            agent any     
-            stages{
-            stage('Lint Checks'){
-                steps {
-                    script {
-                        lintChecks() //call func is calling another func lintchecks
-                    }           
-                }          
-            }
+              agent any     
+                stages{
+                    stage('Lint Checks'){
+                    steps {
+                       script {
+                         lintChecks() //call func is calling another func lintchecks
+                        }           
+                    }          
+                }
                 stage('Static Code Analysis'){
-                steps {
-                    sh "echo ***** Starting Static Code Analysis *****"          
-                 }          
-             }
-         }
-     }  
-}
+                    steps {
+                       sh "echo ***** Starting Static Code Analysis *****"          
+                   }          
+               }
+           }
+       }  
+   }
