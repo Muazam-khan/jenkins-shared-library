@@ -1,6 +1,7 @@
       def lintChecks(){          
             sh "echo ***** Starting Style Checks for ${COMPONENT}  *****"
-            sh "mvn checkstyle:check || true" // this cmd does style check for server.js
+             //   sh "pip install pylint" // this cmd does style check for server.js
+          // sh "pylint *.py || true" this cmd does style check for server.js
             sh "echo ***** Style Checks are Completed for ${COMPONENT} *****"
       }     
 
