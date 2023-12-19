@@ -12,7 +12,7 @@
             stage('Lint Checks'){
                 steps {
                     script {
-                        lintChecks()
+                        lintChecks() //call func is calling another func lintchecks
                     }           
                 }          
             }
