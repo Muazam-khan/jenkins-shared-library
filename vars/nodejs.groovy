@@ -1,18 +1,18 @@
-      def lintChecks(component){          
-            sh "echo ***** Starting Style Checks for ${component} *****"
+      def lintChecks(){          
+            sh "echo ***** Starting Style Checks  *****"
             sh "ls -ltr server.js"
             sh "/home/centos/node_modules/jslint/bin/jslint.js server.js || true" // this cmd does style check for server.js
             sh "echo ***** Completed Style Checks *****"
       }     
 
-      def call('component')  { //when u call file nodejs, this function will be called by default
+      def call()  { //when u call file nodejs, this function will be called by default
             pipeline {
             agent any     
             stages{
             stage('Lint Checks'){
                 steps {
                     script {
-                        lintChecks('component')
+                        lintChecks()
                     }           
                 }          
             }
