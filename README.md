@@ -37,3 +37,26 @@ The directory structure of a Shared Library repository is as follows:
      The src directory should look like standard Java source directory structure. This directory is added to the classpath when executing Pipelines.
 
         The vars directory hosts script files that are exposed as a variable in Pipelines. The name of the file is the name of the variable in the Pipeline. So if you had a file called vars/log.groovy with a function like def info(message)…​ in it, you can access this function like log.info "hello world" in the Pipeline. You can put as many functions as you like inside this file. Read on below for more examples and options.
+
+#### Security Scans
+
+     Scans are of 2 types :
+        1) SAST   ( Analysing the code )
+        2) DAST   ( Analysing the application through the endPoint / pen testing )
+
+#### Why do i need Static Code Analysis (SAST : SonarQube )
+....
+      1) Determines the overall code quality.
+      2) Identifies the hotSpots in the code ( Hotspot : Any sensitivie information in the code ).
+      3) Code Standards and the package versions to be used can be controlled.
+      4) Identifies the duplicate patterns in the code.
+      5) Overall Code Quality Standard.
+....
+
+### SonarQube can be utilized in any of the 2 ways
+....
+    1) Create your own server and set-up sonarQube on the top of that server ( Paid tool : 1 month : In free version, you'd get embedded Portgress DB ) 
+
+    2) You can use SAS offering ( You don't have to host anything locally )
+....
+    
