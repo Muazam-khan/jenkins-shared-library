@@ -10,7 +10,10 @@
 
       def call()  { //when u call file nodejs, this function will be called by default, call is default func
           pipeline {
-              agent any     
+              agent any   
+                tools {
+             maven 'maven-396' // to install maven software with help of tools on jenkins
+       }  
                 stages{
                     stage('Lint Checks'){
                     steps {
@@ -18,6 +21,12 @@
                           lintChecks() //call func is calling another func lintchecks
                         }           
                     }          
+                }
+                stage('Compiling Java Code'){
+                    steps {
+                        sh "mvn clean compile"
+                        sh "ls -ltr target/"
+                    }
                 }
                 stage('Static Code Analysis'){
                     steps {
