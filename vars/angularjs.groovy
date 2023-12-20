@@ -1,36 +1,24 @@
       def lintChecks(){          
             sh "echo ***** Starting Style Checks for ${COMPONENT}  *****"
-            sh "mvn checkstyle:check || true" // this cmd does style check for server.js
+            sh "/home/centos/node_modules/jslint/bin/jslint.js server.js || true" // this cmd does style check for server.js
             sh "echo ***** Style Checks are Completed for ${COMPONENT} *****"
-      }           
-  def call()  { //when u call file nodejs, this function will be called by default, call is default func
+      }         
+      def call()  { 
           pipeline {
-              agent any  
-                 environment {        
-                     SONAR_CRED= credentials('SONAR_CRED')  //pipelione based var, global var
-           } 
-                    tools {
-                       maven 'maven-396' // to install maven software with help of tools on jenkins
-               }  
-                stages{
-                    stage('Lint Checks'){
-                    steps {
-                       script {
-                          lintChecks() //call func is calling another func lintchecks
+              agent any     
+                 stages{
+                     stage('Lint Checks'){
+                       steps {
+                          script {
+                             lintChecks() //call func is calling another func lintchecks
                         }           
                     }          
-                }
-                stage('Compiling Java Code'){
-                    steps {
-                        sh "mvn clean compile"
-                        sh "ls -ltr target/"
-                    }
                 }
                 stage('Static Code Analysis'){
                     steps {
                         script {
-                         env.ARGS="-Dsonar.java.binaries=./target/"   
-                         common.sonarChecks() //call func is calling another func lintchecks
+                           env.ARGS="-Dsonar.sources=." 
+                           common.sonarChecks() //call func is calling another func lintchecks
                         }            
                    }          
                }
