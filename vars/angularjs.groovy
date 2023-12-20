@@ -7,7 +7,7 @@
           pipeline {
               agent any  
                    environment {        
-                     SONAR_CRED= credentials('SONAR_CRED')  //pipelione based var, global var
+                       SONAR_CRED= credentials('SONAR_CRED')  //pipelione based var, global var
                     }   
                  stages{
                      stage('Lint Checks'){

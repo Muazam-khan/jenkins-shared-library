@@ -76,7 +76,7 @@ The directory structure of a Shared Library repository is as follows:
 
     Package: package compiled source code into the distributable format (jar, war, …)
     integration-test: process and deploy the package if needed to run integration tests
-    
+
     install: install the package to a local repository
     deploy: copy the package to the remote repository
     For the full list of each lifecycle’s phases, check out the Maven Reference.
@@ -84,6 +84,14 @@ The directory structure of a Shared Library repository is as follows:
     Phases are executed in a specific order. This means that if we run a specific phase using the command: 
 ....
     
+### How to do Unit Testing & Ingeration Testing
+....
+     Both these test cases are typically placed in the same code where your applications is hosted. And can be called by the same build tool using test or verify commands.
 
+    If you're node based project :
+    ex : npm test    [ Unit Testing ] //cmd
+         npm verify  [ Integration Testing] //cmd
+
+....
     
 

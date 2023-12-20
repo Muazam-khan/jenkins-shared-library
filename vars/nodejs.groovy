@@ -31,14 +31,28 @@
                         sh "bash gates.sh admin password ${SONAR_URL} ${COMPONENT}"
                     }
                  }
-               stage('Unit Testing'){
-                    steps {
-                        script {
-                         sh "echo Testing in process" //call func is calling another func lintchecks
-                         sh "echo Testing is completed"
-                        }            
-                   }          
-               }
-           }
-       }  
-   }
+               stage('Test Cases'){
+                    parallel {
+                        stage('Unit Testing') {
+                            steps {
+                                sh "echo Download in Progress"
+                                sh "sleep 30"
+                            }
+                        }
+                        stage('Integration Testing') {
+                            steps {
+                                sh "echo Download in Progress"
+                                sh "sleep 30"
+                            }
+                        }
+                        stage('Functional Testing') {
+                            steps {
+                                sh "echo Download in Progress"
+                                sh "sleep 30"
+                           }
+                       }
+                   }
+                }
+             }
+          }
+      }
