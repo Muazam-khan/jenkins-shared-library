@@ -22,6 +22,7 @@
                 stage('Static Code Analysis'){
                     steps {
                         script {
+                         env.ARGS="-Dsonar.sources=."   
                          sonarChecks() //call func is calling another func lintchecks
                         }            
                    }          
