@@ -40,14 +40,31 @@
                         sh "bash gates.sh admin password ${SONAR_URL} ${COMPONENT}"
                     }
                  }
-               stage('Unit Testing'){
-                    steps {
-                        script {
-                         sh "echo Testing in process" //call func is calling another func lintchecks
-                         sh "echo Testing is completed"
-                        }            
-                   }          
-               }
-           }
-       }  
-   }
+                  stage('Test Cases'){
+                    parallel {
+                        stage('Unit Testing') {
+                            steps {
+                                sh "Unit Testing in Progress"
+                               // sh "npm test"
+                                sh "Unit Testing is Completed" 
+                            }
+                        }
+                        stage('Integration Testing') {
+                            steps {
+                                sh "Integration Testing in Progress"
+                               // sh "npm verify"
+                                 sh "Integration Testing is Completed"
+                            }
+                        }
+                        stage('Functional Testing') {
+                            steps {
+                                sh "Functional Testing in Progress"
+                              //  sh "npm function"
+                                 sh "Functional Testing is Completed"
+                           }
+                       }
+                   }
+                }
+             }
+          }
+      }
