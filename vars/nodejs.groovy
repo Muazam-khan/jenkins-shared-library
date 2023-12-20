@@ -17,7 +17,7 @@
                 stage('Static Code Analysis'){
                     steps {
                         script {
-                           sonarChecks() //call func is calling another func lintchecks
+                           common.sonarChecks() //call func is calling another func lintchecks
                         }            
                    }          
                }
