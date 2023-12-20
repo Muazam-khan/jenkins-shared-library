@@ -2,11 +2,7 @@
             sh "echo ***** Starting Style Checks for ${COMPONENT}  *****"
             sh "/home/centos/node_modules/jslint/bin/jslint.js server.js || true" // this cmd does style check for server.js
             sh "echo ***** Style Checks are Completed for ${COMPONENT} *****"
-      }    
-
-      def sonarChecks(){
-        sh "sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password"
-      } 
+      }         
       def call()  { 
           pipeline {
               agent any     
