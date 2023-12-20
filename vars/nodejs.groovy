@@ -30,6 +30,8 @@
                     steps {
                         sh "curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/sonar-scanner/quality-gate > gates.sh"
                         sh "./gates.sh admin password ${SONAR_URL} ${COMPONENT}"
+                    }
+                 }
                stage('Unit Testing'){
                     steps {
                         script {
