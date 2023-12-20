@@ -48,7 +48,7 @@
                             }
                         }
                         stage('Functional Testing') {
-                            steps {
+                            steps{
                                  sh "Functional Testing in Progress"
                               //  sh "npm function"
                                  sh "Functional Testing is Completed"
