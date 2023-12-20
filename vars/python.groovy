@@ -27,7 +27,7 @@
                    }          
                }
                  stage('Get the Sonar result'){
-                    steps {
+                     steps {
                         sh "curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/sonar-scanner/quality-gate > gates.sh"
                         sh "bash gates.sh admin password ${SONAR_URL} ${COMPONENT}"
                     }
