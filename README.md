@@ -65,3 +65,5 @@ The directory structure of a Shared Library repository is as follows:
      
 ....
     
+
+    sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 -Dsonar.sources=. -Dsonar.projectKey=catalogue -Dsonar.login=admin -Dsonar.password=password
