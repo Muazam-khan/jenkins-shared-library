@@ -35,20 +35,23 @@
                     parallel {
                         stage('Unit Testing') {
                             steps {
-                                sh "echo Download in Progress"
-                                sh "sleep 30"
+                                sh "Unit Testing in Progress"
+                               // sh "npm test"
+                                sh "Unit Testing is Completed" 
                             }
                         }
                         stage('Integration Testing') {
                             steps {
-                                sh "echo Download in Progress"
-                                sh "sleep 30"
+                                sh "Integration Testing in Progress"
+                               // sh "npm verify"
+                                 sh "Integration Testing is Completed"
                             }
                         }
                         stage('Functional Testing') {
                             steps {
-                                sh "echo Download in Progress"
-                                sh "sleep 30"
+                                sh "Functional Testing in Progress"
+                              //  sh "npm function"
+                                 sh "Functional Testing is Completed"
                            }
                        }
                    }
