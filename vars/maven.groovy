@@ -44,21 +44,21 @@
                     parallel {
                         stage('Unit Testing') {
                             steps {
-                                sh "Unit Testing in Progress"
+                              sh "Unit Testing in Progress"
                                // sh "mvn test"
-                                sh "Unit Testing is Completed" 
+                              sh "Unit Testing is Completed" 
                             }
                         }
                         stage('Integration Testing') {
                             steps {
-                                sh "Integration Testing in Progress"
+                                 sh "Integration Testing in Progress"
                                // sh "mvn verify"
                                  sh "Integration Testing is Completed"
                             }
                         }
                         stage('Functional Testing') {
                             steps {
-                                sh "Functional Testing in Progress"
+                                 sh "Functional Testing in Progress"
                               //  sh "mvn function"
                                  sh "Functional Testing is Completed"
                            }
