@@ -5,7 +5,7 @@
       }    
 
       def sonarChecks(){
-        sh "sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 -Dsonar.sources=. -Dsonar.projectKey=catalogue -Dsonar.login=admin -Dsonar.password=password"
+        sh "sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password"
       } 
 
       def call()  { //when u call file nodejs, this function will be called by default, call is default func
@@ -21,7 +21,9 @@
                 }
                 stage('Static Code Analysis'){
                     steps {
-                       sh "echo ***** Starting Static Code Analysis *****"          
+                        script {
+                         sonarChecks() //call func is calling another func lintchecks
+                        }            
                    }          
                }
            }
