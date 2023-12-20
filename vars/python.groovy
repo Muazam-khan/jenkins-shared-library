@@ -32,8 +32,8 @@
                stage('Unit Testing'){
                     steps {
                         script {
-                         sh "echo Testing in process" //call func is calling another func lintchecks
-                         sh "echo Testing is completed"
+                         echo "Testing in process" //call func is calling another func lintchecks
+                         echo "Testing is completed"
                         }            
                    }          
                }
