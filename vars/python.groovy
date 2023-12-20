@@ -37,21 +37,21 @@
                         stage('Unit Testing') {
                             steps {
                                 sh "Unit Testing in Progress"
-                               // sh "npm test"
+                               // sh "ply test"
                                 sh "Unit Testing is Completed" 
                             }
                         }
                         stage('Integration Testing') {
                             steps {
                                 sh "Integration Testing in Progress"
-                               // sh "npm verify"
+                               // sh "ply verify"
                                  sh "Integration Testing is Completed"
                             }
                         }
                         stage('Functional Testing') {
                             steps {
                                 sh "Functional Testing in Progress"
-                              //  sh "npm function"
+                              //  sh "ply function"
                                  sh "Functional Testing is Completed"
                            }
                        }
