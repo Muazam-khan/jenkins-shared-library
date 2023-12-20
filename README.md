@@ -62,8 +62,28 @@ The directory structure of a Shared Library repository is as follows:
 
 #### Maven Goals
 ....
-     
+    A Maven phase represents a stage in the Maven build lifecycle. Each phase is responsible for a specific task.
+
+    Here are some of the most important phases in the default build lifecycle:
+
+    Validate: check if all information necessary for the build is available
+
+    compile: compile the source code
+
+        test-compile: compile the test source code
+
+        test: run unit tests
+
+    Package: package compiled source code into the distributable format (jar, war, …)
+    integration-test: process and deploy the package if needed to run integration tests
+    
+    install: install the package to a local repository
+    deploy: copy the package to the remote repository
+    For the full list of each lifecycle’s phases, check out the Maven Reference.
+
+    Phases are executed in a specific order. This means that if we run a specific phase using the command: 
 ....
     
 
-    sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 -Dsonar.sources=. -Dsonar.projectKey=catalogue -Dsonar.login=admin -Dsonar.password=password
+    
+
