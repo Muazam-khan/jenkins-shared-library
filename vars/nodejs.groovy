@@ -42,14 +42,14 @@
                         }
                         stage('Integration Testing') {
                             steps {
-                                sh "Integration Testing in Progress"
+                                 sh "Integration Testing in Progress"
                                // sh "npm verify"
                                  sh "Integration Testing is Completed"
                             }
                         }
                         stage('Functional Testing') {
                             steps {
-                                sh "Functional Testing in Progress"
+                                 sh "Functional Testing in Progress"
                               //  sh "npm function"
                                  sh "Functional Testing is Completed"
                            }
