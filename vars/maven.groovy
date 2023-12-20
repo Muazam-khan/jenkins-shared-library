@@ -8,7 +8,7 @@
               agent any  
                  environment {        
                      SONAR_CRED= credentials('SONAR_CRED')  //pipelione based var, global var
-           } 
+                    } 
                     tools {
                        maven 'maven-396' // to install maven software with help of tools on jenkins
                }  

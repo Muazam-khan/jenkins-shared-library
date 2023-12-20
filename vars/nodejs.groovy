@@ -5,7 +5,10 @@
       }         
       def call()  { 
           pipeline {
-              agent any     
+              agent any 
+                  environment {        
+                      SONAR_CRED= credentials('SONAR_CRED')  //pipelione based var, global var
+                    }    
                  stages{
                      stage('Lint Checks'){
                        steps {

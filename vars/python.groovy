@@ -6,7 +6,10 @@
       }             
       def call()  { //when u call file nodejs, this function will be called by default, call is default func
           pipeline {
-              agent any     
+              agent any   
+                   environment {        
+                       SONAR_CRED= credentials('SONAR_CRED')  //pipelione based var, global var
+                    }  
                 stages{
                     stage('Lint Checks'){
                     steps {
