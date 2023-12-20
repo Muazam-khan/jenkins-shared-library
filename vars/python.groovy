@@ -3,11 +3,7 @@
              //   sh "pip install pylint" // this cmd does style check for server.js
           // sh "pylint *.py || true" this cmd does style check for server.js
             sh "echo ***** Style Checks are Completed for ${COMPONENT} *****"
-      }   
-          def sonarChecks(){
-                sh "sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password"
-             } 
-
+      }             
       def call()  { //when u call file nodejs, this function will be called by default, call is default func
           pipeline {
               agent any     
@@ -23,7 +19,7 @@
                     steps {
                         script {
                          env.ARGS="-Dsonar.sources=."   
-                         sonarChecks() //call func is calling another func lintchecks
+                         common.sonarChecks() //call func is calling another func lintchecks
                         }            
                    }          
                }
