@@ -18,7 +18,23 @@
                 }
                 stage('Static Code Analysis'){
                     steps {
-                       sh "echo ***** Starting Static Code Analysis *****"          
+                        script {
+                         sonarChecks() //call func is calling another func lintchecks
+                        }            
+                   }          
+               }
+                 stage('Get the Sonar result'){
+                    steps {
+                        sh "curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/sonar-scanner/quality-gate > gates.sh"
+                        sh "./gates.sh admin password ${SONAR_URL} ${COMPONENT}"
+                    }
+                 }
+               stage('Unit Testing'){
+                    steps {
+                        script {
+                         sh "echo Testing in process" //call func is calling another func lintchecks
+                         sh "echo Testing is completed"
+                        }            
                    }          
                }
            }
