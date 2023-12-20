@@ -5,15 +5,15 @@
       }     
 
        def sonarChecks(){
-        sh "sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password"
+        sh "sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 -Dsonar.java.binaries=./target/ -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password"
       }
 
       def call()  { //when u call file nodejs, this function will be called by default, call is default func
           pipeline {
               agent any   
-                tools {
-             maven 'maven-396' // to install maven software with help of tools on jenkins
-       }  
+                    tools {
+                       maven 'maven-396' // to install maven software with help of tools on jenkins
+               }  
                 stages{
                     stage('Lint Checks'){
                     steps {
