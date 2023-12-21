@@ -41,43 +41,43 @@
                     }
                  }
                 stage('Test Cases'){
-                    parallel {
-                        stage('Unit Testing') {
-                            steps {
-                              sh "env" //prints all env variables  
-                              sh "echo Unit Testing in Progress"
-                               // sh "mvn test"
-                              sh "echo Unit Testing is Completed" 
+                        parallel {
+                            stage('Unit Testing') {
+                                steps {
+                                sh "env" //prints all env variables  
+                                sh "echo Unit Testing in Progress"
+                                // sh "mvn test"
+                                sh "echo Unit Testing is Completed" 
+                                }
+                            }
+                            stage('Integration Testing') {
+                                steps {
+                                    sh "echo Integration Testing in Progress"
+                                // sh "mvn verify"
+                                    sh "echo Integration Testing is Completed"
+                                }
+                            }
+                            stage('Functional Testing') {
+                                steps {
+                                    sh "echo Functional Testing in Progress"
+                                //  sh "mvn function"
+                                    sh "echo Functional Testing is Completed"
                             }
                         }
-                        stage('Integration Testing') {
-                            steps {
-                                 sh "echo Integration Testing in Progress"
-                               // sh "mvn verify"
-                                 sh "echo Integration Testing is Completed"
-                            }
-                        }
-                        stage('Functional Testing') {
-                            steps {
-                                 sh "echo Functional Testing in Progress"
-                              //  sh "mvn function"
-                                 sh "echo Functional Testing is Completed"
-                           }
-                       }
-                   }
-                }
+                      }
+                    }
                 stage('Prepare Artifacts') { // runs only when u run this job from a tag and from branches this should not run
-                     when { expression { env.TAG_NAME != null } }
+                       when { expression { env.TAG_NAME != null } }
                      steps {
                         sh "echo Preparing artifacts"
                     }
                }
                 stage('Uploading Artifacts') {
-                  when { expression { env.TAG_NAME != null } }
+                     when { expression { env.TAG_NAME != null } }
                      steps {
                         sh "echo Uploading artifacts"
-                        }
-                  }
-            }
+                    }
+                }
+         }
      }
   }
