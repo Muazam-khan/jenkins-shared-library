@@ -44,6 +44,7 @@
                     parallel {
                         stage('Unit Testing') {
                             steps {
+                              sh "env" //prints all env variables  
                               sh "echo Unit Testing in Progress"
                                // sh "mvn test"
                               sh "echo Unit Testing is Completed" 
