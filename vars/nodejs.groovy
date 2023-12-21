@@ -56,6 +56,17 @@
                        }
                    }
                 }
-             }
+                stage('Prepare Artifacts') {
+                     steps {
+                        sh "echo Preparing artifacts"
+               }
+            }
+                stage('Uploading Artifacts') {
+                    steps {
+                        sh "echo Uploading artifacts"
+                        }
+                   }
+                }
           }
-      }
+  }
+            

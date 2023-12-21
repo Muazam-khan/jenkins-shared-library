@@ -40,7 +40,7 @@
                         sh "bash gates.sh admin password ${SONAR_URL} ${COMPONENT}"
                     }
                  }
-                  stage('Test Cases'){
+                stage('Test Cases'){
                     parallel {
                         stage('Unit Testing') {
                             steps {
@@ -65,6 +65,16 @@
                        }
                    }
                 }
+                stage('Prepare Artifacts') {
+                     steps {
+                        sh "echo Preparing artifacts"
              }
           }
-      }
+                stage('Uploading Artifacts') {
+                    steps {
+                        sh "echo Uploading artifacts"
+                        }
+                }
+                }
+          }
+  }
