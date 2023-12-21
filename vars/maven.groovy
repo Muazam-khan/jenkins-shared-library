@@ -65,7 +65,7 @@
                        }
                    }
                 }
-                stage('Prepare Artifacts') {
+                stage('Prepare Artifacts') { // runs only when u run this job from a tag and from branches this should not run
                      steps {
                         sh "echo Preparing artifacts"
              }

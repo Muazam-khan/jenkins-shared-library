@@ -93,5 +93,25 @@ The directory structure of a Shared Library repository is as follows:
          npm verify  [ Integration Testing] //cmd
 
 ....
+### How to add your Jenkins Job The Ability To Run the Job From a particular branch or from Tag ? 
+.....
+
+
+.....
+
+
+### What is the versioning strategy we are going through ???/
+...
+   We are going with Git Semantic Versioning
+...
+
+#### How to create a Git Tag ?
+
+...
+    Tags are typically created against MAIN Branch only.
+
+                $ git tag (0.0.0) // this cmd creates tag 0.0.0 or any tag nos u want to associate
+                $ git push --tags  //pushes the created tags
+...
     
 
