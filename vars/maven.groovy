@@ -8,11 +8,11 @@
               agent any  
                  environment {        
                      SONAR_CRED= credentials('SONAR_CRED')  //pipelione based var, global var
-                    } 
+                      } 
                     tools {
                        maven 'maven-396' // to install maven software with help of tools on jenkins
-               }  
-                stages{
+                 }  
+              stages{
                     stage('Lint Checks'){
                     steps {
                        script {
@@ -70,14 +70,14 @@
                      when { expression { env.TAG_NAME != null } }
                      steps {
                         sh "echo Preparing artifacts"
-             }
-          }
+                    }
+               }
                 stage('Uploading Artifacts') {
                   when { expression { env.TAG_NAME != null } }
                      steps {
                         sh "echo Uploading artifacts"
                         }
                   }
-                }
-          }
+            }
+     }
   }
