@@ -67,15 +67,17 @@
                    }
                 }
                 stage('Prepare Artifacts') { // runs only when u run this job from a tag and from branches this should not run
+                     when { expression { env.TAG_NAME != null } }
                      steps {
                         sh "echo Preparing artifacts"
              }
           }
                 stage('Uploading Artifacts') {
-                    steps {
+                  when { expression { env.TAG_NAME != null } }
+                     steps {
                         sh "echo Uploading artifacts"
                         }
-                }
+                  }
                 }
           }
   }
