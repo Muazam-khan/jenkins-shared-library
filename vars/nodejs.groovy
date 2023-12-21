@@ -58,11 +58,13 @@
                    }
                 }
                 stage('Prepare Artifacts') {
+                     when { expression { env.TAG_NAME != null } }
                      steps {
                         sh "echo Preparing artifacts"
                }
             }
                 stage('Uploading Artifacts') {
+                     when { expression { env.TAG_NAME != null } }
                     steps {
                         sh "echo Uploading artifacts"
                         }
