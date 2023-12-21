@@ -35,6 +35,7 @@
                     parallel {
                         stage('Unit Testing') {
                             steps {
+                                sh "env" //cmd will publish all env variables
                                 sh "echo Unit Testing in Progress"
                                // sh "npm test"
                                 sh "echo Unit Testing is Completed" 
