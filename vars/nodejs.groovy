@@ -60,14 +60,11 @@
                 }
                 stage('Prepare Artifacts') {
                     when { expression { env.TAG_NAME != null } }
-                    steps { 
-                      
-                      sh '''
-                          npm install
-                          ls -ltr
-                          zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
-                         '''                                       
-               }
+                    steps {                       
+                       sh "npm install"
+                       sh "ls -ltr"
+                       sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"                              
+                      }
             }
                 stage('Uploading Artifacts') {
                     when { expression { env.TAG_NAME != null } } 
