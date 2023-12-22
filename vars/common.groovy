@@ -40,4 +40,24 @@
             '''                   
       }
   } 
-  }   
+}   
+def testCases(){
+     stage('Test Cases') {
+        def stages = [1]
+
+        stages["Unit Testing"] = {
+            echo "Unit Testing in progress"
+            echo "Unit Testing is completed"
+        }
+        stages["Integration Testing"] = {
+            echo "Integration Testing in progress"
+            echo "Integration Testing is completed"
+        }
+        stages["Functional Testing"] = {
+            echo "Functional Testing in progress"
+            echo "Functional Testing is completed"
+        }
+        parallel(stages)
+    }
+}
+  
