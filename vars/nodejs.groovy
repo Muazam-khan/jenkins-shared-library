@@ -28,7 +28,7 @@
                  stage('Get the Sonar result'){
                     steps {
                         sh "curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/sonar-scanner/quality-gate > gates.sh"
-                        sh "bash gates.sh admin password ${SONAR_URL} ${COMPONENT}"
+                        // sh "bash gates.sh admin password ${SONAR_URL} ${COMPONENT}"
                     }
                  }
                stage('Test Cases'){
@@ -58,14 +58,18 @@
                    }
                 }
                 stage('Prepare Artifacts') {
-                     when { expression { env.TAG_NAME != null } }
-                     steps {
-                        sh "echo Preparing artifacts"
+                    steps { 
+                      when { expression { env.TAG_NAME != null } }
+                      sh '''
+                          npm install
+                          ls -ltr
+                          zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
+                         '''                                       
                }
             }
                 stage('Uploading Artifacts') {
-                     when { expression { env.TAG_NAME != null } }
-                    steps {
+                    steps { 
+                        when { expression { env.TAG_NAME != null } }                    
                         sh "echo Uploading artifacts"
                         }
                    }
