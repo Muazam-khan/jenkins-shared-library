@@ -59,8 +59,9 @@
                    }
                 }
                 stage('Prepare Artifacts') {
+                    when { expression { env.TAG_NAME != null } }
                     steps { 
-                      when { expression { env.TAG_NAME != null } }
+                      
                       sh '''
                           npm install
                           ls -ltr
@@ -69,8 +70,8 @@
                }
             }
                 stage('Uploading Artifacts') {
-                    steps { 
-                        when { expression { env.TAG_NAME != null } }                    
+                    when { expression { env.TAG_NAME != null } } 
+                    steps {                                            
                         sh "echo Uploading artifacts"
                         }
                    }
