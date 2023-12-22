@@ -1,9 +1,5 @@
-      def lintChecks(){          
-            sh "echo ***** Starting Style Checks for ${COMPONENT}  *****"
-            sh "npm install jslint"
-            sh "/home/centos/node_modules/jslint/bin/jslint.js server.js || true" // this cmd does style check for server.js
-            sh "echo ***** Style Checks are Completed for ${COMPONENT} *****"
-      }         
+                           
+               
       def call()  { 
           pipeline {
               agent any 
