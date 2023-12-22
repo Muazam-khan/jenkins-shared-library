@@ -115,4 +115,4 @@ The directory structure of a Shared Library repository is as follows:
 ...
     
 
-## curl -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://localhost:8081/repository/maven-releases/org/foo/1.0/foo-1.0.pom
+## 

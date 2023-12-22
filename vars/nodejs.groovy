@@ -72,7 +72,8 @@
                 stage('Uploading Artifacts') {
                     when { expression { env.TAG_NAME != null } } 
                     steps {                                            
-                        sh "echo Uploading artifacts"
+                        sh "echo Uploading ${COMPONENT} artifacts"
+                        sh "curl -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.83.147:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip"
                         }
                    }
                 }
