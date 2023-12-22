@@ -9,8 +9,8 @@
                  environment {        
                      SONAR_CRED= credentials('SONAR_CRED')  //pipelione based var, global var
                      NEXUS= credentials('NEXUS')
-                     env.SONAR_URL="172.31.47.174"
-                     env.NEXUS_URL="172.31.83.147"
+                     env.SONAR_URL = "172.31.47.174"
+                     env.NEXUS_URL = "172.31.83.147"
                       } 
                     tools {
                        maven 'maven-396' // to install maven software with help of tools on jenkins
