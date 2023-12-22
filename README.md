@@ -126,4 +126,3 @@ The directory structure of a Shared Library repository is as follows:
 ....
 
 
-env.UPLOAD_STATUS = sh(script: "curl http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip", returnStdout: true)
