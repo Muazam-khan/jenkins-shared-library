@@ -70,14 +70,29 @@
                         }
                       }
                     }
+                    stage('Checking Artifacts availability on NEXUS') {
+                    when { expression { env.TAG_NAME != null } }
+                    steps { 
+                        script {                      
+                          env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")
+                          print UPLOAD_STATUS
+                        }                       
+                      }
+            }
                 stage('Prepare Artifacts') { // runs only when u run this job from a tag and from branches this should not run
-                       when { expression { env.TAG_NAME != null } }
+                       when { 
+                        expression { env.TAG_NAME != null }
+                        expression { env.UPLOAD_STATUS == "" }
+                        }
                      steps {
                         sh "echo Preparing artifacts"
                     }
                }
                 stage('Uploading Artifacts') {
-                     when { expression { env.TAG_NAME != null } }
+                     when { 
+                        expression { env.TAG_NAME != null }
+                        expression { env.UPLOAD_STATUS == "" }
+                         }
                      steps {
                         sh "echo Uploading artifacts"
                     }

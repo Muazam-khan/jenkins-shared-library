@@ -60,6 +60,39 @@
                        }
                    }
                 }
-             }
+                stage('Checking Artifacts availability on NEXUS') {
+                    when { expression { env.TAG_NAME != null } }
+                    steps { 
+                        script {                      
+                          env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")
+                          print UPLOAD_STATUS
+                        }                       
+                      }
+                   }
+
+            stage('Prepare Artifacts') {
+                    when { 
+                    expression { env.TAG_NAME != null } 
+                    expression { env.UPLOAD_STATUS == "" }
+                    }
+                    steps {                       
+                       sh "npm install"
+                       sh "ls -ltr"
+                       sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
+                       sh "ls -ltr"                              
+                      }
+            }
+                stage('Uploading Artifacts') {
+                    when { 
+                        expression { env.TAG_NAME != null }
+                        expression { env.UPLOAD_STATUS == "" }
+                         } 
+                    steps {                                            
+                        sh "echo Uploading ${COMPONENT} artifacts"
+                        sh "curl -f -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.83.147:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip"
+                        }
+                   }
+                }
           }
-      }
+  }
+            
