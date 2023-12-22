@@ -4,6 +4,7 @@ def call() {
         env.ARGS="-Dsonar.sources=." 
         common.sonarChecks()
         common.testCases()
+        common.artifacts()
     }
 }                 
 //       def call()  { //when u call file nodejs, this function will be called by default, call is default func

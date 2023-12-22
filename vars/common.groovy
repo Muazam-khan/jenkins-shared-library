@@ -41,7 +41,7 @@
       }
   } 
 }   
-def testCases(){
+def testCases(){ // def declares testCases as a function
      stage('Test Cases') {
         def stages = [1]
 
@@ -58,6 +58,32 @@ def testCases(){
             echo "Functional Testing is completed"
         }
         parallel(stages)
+    }
+}
+
+def Artifacts(){
+    stage('Checking the Artifact Release on Nexus'){
+        env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")    
+        print UPLOAD_STATUS
+    }
+    stage('Generating the Artifacts'){
+        if(env.APP_TYPE == "nodejs"){
+            sh "npm install"            
+            sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
+            
+        }
+        else if(env.APP_TYPE == "maven"){
+             sh "mvn clean package"
+             sh "mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar"
+             sh "zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar "
+        }
+        else if(env.APP_TYPE == "python"){
+             sh "zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt"
+        }
+         else{
+            sh "cd static/"
+            sh "zip -r ../${COMPONENT}-${TAG_NAME}.zip .*"
+         }
     }
 }
   
