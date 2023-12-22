@@ -63,7 +63,8 @@
                     steps {                       
                        sh "npm install"
                        sh "ls -ltr"
-                       sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"                              
+                       sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
+                       sh "ls -ltr"                              
                       }
             }
                 stage('Uploading Artifacts') {
