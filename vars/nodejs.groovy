@@ -1,6 +1,5 @@
-                           
-               
-      def call()  { 
+                        
+     def call()  { 
           pipeline {
               agent any 
                   environment {                             
@@ -13,7 +12,7 @@
                      stage('Lint Checks'){
                        steps {
                           script {
-                             lintChecks() //call func is calling another func lintchecks
+                             common.lintChecks() //call func is calling another func lintchecks
                         }           
                     }          
                 }
