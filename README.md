@@ -115,4 +115,15 @@ The directory structure of a Shared Library repository is as follows:
 ...
     
 
-## 
+## When Artifacts has to be prepared and when they are supposed to be uploaded ??
+
+....
+      Only when the TAG_NAME or version of the artifact that you are trying to upload is not available on Nexus.
+
+      That means, even before you prepare the ARTIFACT, let us have a stage on validation against NEXUS on the availability of that particular version.
+
+      We need to ensure that BUILD and UPLOAD of Artifacts will happen in the event of unavailability of that version on NEXUS.
+....
+
+
+env.UPLOAD_STATUS = sh(script: "curl http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip", returnStdout: true)
