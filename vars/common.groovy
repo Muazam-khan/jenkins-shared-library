@@ -1,10 +1,12 @@
  def sonarChecks(){
+      stage('Sonar Checks') {
        sh '''
             echo sonar Checks in progress
             # sh "sonar-scanner -Dsonar.host.url=http://172.31.47.174:9000 ${ARGS} -Dsonar.projectKey=${COMPONENT} -Dsonar.login=${SONAR_CRED_USR} -Dsonar.password=${SONAR_CRED_PSW}"
             echo sonar Checks completed
         '''
       }
+ }
 
   def lintChecks() {
       stage('Lint checks'){
@@ -15,7 +17,7 @@
                  echo ***** Style Checks are Completed for ${COMPONENT} *****
             '''
           }
-         else if(env.APP_TYPE == "node"){
+         else if(env.APP_TYPE == "nodejs"){
             sh '''
                  echo ***** Starting Style Checks for ${COMPONENT}  *****
                  npm install jslint
