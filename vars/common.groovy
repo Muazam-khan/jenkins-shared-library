@@ -66,24 +66,33 @@ def Artifacts(){
         env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")    
         print UPLOAD_STATUS
     }
-    stage('Generating the Artifacts'){
-        if(env.APP_TYPE == "nodejs"){
-            sh "npm install"            
-            sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
-            
-        }
-        else if(env.APP_TYPE == "maven"){
-             sh "mvn clean package"
-             sh "mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar"
-             sh "zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar "
-        }
-        else if(env.APP_TYPE == "python"){
-             sh "zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt"
-        }
-         else{
-            sh "cd static/"
-            sh "zip -r ../${COMPONENT}-${TAG_NAME}.zip .*"
-         }
+       if(env.UPLOAD_STATUS == ""){
+            stage('Generating the Artifacts'){
+                if(env.APP_TYPE == "nodejs"){
+                    sh "npm install"            
+                    sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
+                    
+                }
+                else if(env.APP_TYPE == "maven"){
+                    sh "mvn clean package"
+                    sh "mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar"
+                    sh "zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar "
+                }
+                else if(env.APP_TYPE == "python"){
+                    sh "zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt"
+                }
+                else{
+                    sh "cd static/"
+                    sh "zip -r ../${COMPONENT}-${TAG_NAME}.zip .*"
+                }
+            }
+            stage('Uploading the Artifacts'){
+                withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USER')]) {
+                    sh "echo Uploading the ${COMPONENT} artifacts to Nexus" 
+                    sh "curl -f -v -u ${NEXUS_USER}:${NEXUS_PASSWORD} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.83.147:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip"
+                    sh "echo Upload completed"
+       }
+    }
     }
 }
   
