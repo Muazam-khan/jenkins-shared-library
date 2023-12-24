@@ -9,7 +9,7 @@ def call() {
     }
 }
 }        
-
+      // uncomment below code if u want to practise the declarative approach.
 //      def call()  { 
 //           pipeline {
 //               agent any 
