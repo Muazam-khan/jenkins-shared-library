@@ -43,7 +43,7 @@
 }   
 def testCases(){ // def declares testCases as a function
      stage('Test Cases') {
-        def stages = [1]
+        def stages = [:]
 
         stages["Unit Testing"] = {
             echo "Unit Testing in progress"
