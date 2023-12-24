@@ -27,10 +27,10 @@
           else if(env.APP_TYPE == "python"){
             sh '''
                  echo ***** Starting Style Checks for ${COMPONENT}  *****
-                    //   sh "pip install pylint" // this cmd does style check for server.js
-                   // sh "pylint *.py || true" this cmd does style check for server.js
+                 pip install pylint" // this cmd does style check for server.js
+                 pylint *.py || true" this cmd does style check for server.js
                  echo ***** Style Checks are Completed for ${COMPONENT} ***** 
-            '''
+             '''
                  }
           else {
             sh '''  
