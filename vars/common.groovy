@@ -9,7 +9,7 @@
  }
 
   def lintChecks() {
-      stage('Lint checks'){
+       stage('Lint checks'){
           if(env.APP_TYPE == "maven"){
             sh '''
                  echo ***** Starting Style Checks for ${COMPONENT}  *****
