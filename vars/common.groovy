@@ -61,7 +61,7 @@ def testCases(){ // def declares testCases as a function
     }
 }
 
-def Artifacts(){
+def artifacts(){
     stage('Checking the Artifact Release on Nexus'){
         env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")    
         print UPLOAD_STATUS
