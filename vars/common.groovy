@@ -7,7 +7,6 @@
         '''
       }
  }
-
   def lintChecks() {
        stage('Lint checks'){
           if(env.APP_TYPE == "maven"){
@@ -60,7 +59,6 @@ def testCases(){ // def declares testCases as a function
         parallel(stages)
     }
 }
-
 def artifacts(){
     stage('Checking the Artifact Release on Nexus'){
         env.UPLOAD_STATUS = sh(returnStdout: true, script: "curl http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true")    
