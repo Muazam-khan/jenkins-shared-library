@@ -78,11 +78,14 @@ def artifacts(){
                 }
                 else if(env.APP_TYPE == "python"){
                     sh "zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt"
+                    sh "ls -ltr"
                 }
                 else if(env.APP_TYPE == "angularjs"){
-                    sh "cd static/"
-                    sh "zip -r ../${COMPONENT}-${TAG_NAME}.zip *"
-                    sh "ls -ltr"
+                    sh '''
+                       cd static/
+                       zip -r ../${COMPONENT}-${TAG_NAME}.zip *
+                       ls -ltr
+                    '''   
                 }
                 else{
                     sh "Selected Component Type Does not Exist"
